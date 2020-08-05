@@ -4,6 +4,14 @@
 /.env.local.php
 /.env.*.local
 /public/bundles/
-/var/
-/vendor/
+var
+vendor
 ###< symfony/framework-bundle ###
+
+.idea
+
+###> symfony/web-server-bundle ###
+/.web-server-pid
+###< symfony/web-server-bundle ###
+
+tmp
