@@ -79,8 +79,6 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     *
-     * @Assert\NotBlank(message="Please, upload the product brochure as an image file.")
      * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
     private $picture;

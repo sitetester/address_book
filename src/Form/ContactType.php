@@ -27,7 +27,7 @@ class ContactType extends AbstractType
             ->add('phoneNumber', TextType::class)
             ->add('birthday', BirthdayType::class)
             ->add('email', TextType::class)
-            ->add('picture', FileType::class,)
+            ->add('picture', FileType::class)
             ->add('save', SubmitType::class)
         ;
     }
