@@ -24,7 +24,7 @@ class FileUploadHelper
         $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
 
         // this is needed to safely include the file name as part of the URL
-        $newFilename = $originalFilename.'-'.date('Y-m-d_H:i:s').'.'.$pictureFile->guessExtension();
+        $newFilename = $originalFilename . '_' . date('Y_m_d_H_i_s') . '.' . $pictureFile->guessExtension();
 
         // Move the file to the directory where brochures are stored
         try {

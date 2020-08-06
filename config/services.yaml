@@ -4,6 +4,7 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
+    uploadPath: '%kernel.root_dir%/../public/uploads/'
 
 services:
     # default configuration for services in *this* file
@@ -31,4 +32,8 @@ services:
 
     App\Service\Helper\FileUploadHelper:
         arguments:
-            $uploadPath: '%kernel.root_dir%/../var/uploads/'
+            $uploadPath: '%uploadPath%'
+
+    App\Controller\ContactsController:
+        arguments:
+            $uploadPath: '%uploadPath%'

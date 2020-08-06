@@ -15,5 +15,5 @@ vendor
 ###< symfony/web-server-bundle ###
 
 tmp
-
 .DS_Store
+public/uploads
