@@ -1,8 +1,14 @@
-{% form_theme form 'form_table_layout.html.twig' %}
+{% extends "base.html.twig" %}
 
-<a href="{{ path('contacts_index') }}"><< Contacts</a> <br>
+ {% form_theme form 'form_table_layout.html.twig' %}
 
-<fieldset>
-    <legend>New Contact</legend>
-    {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
-</fieldset>
+{% block body %}
+
+    <a href="{{ path('contacts_index') }}"><< Contacts</a>
+
+    <fieldset>
+        <legend>New Contact</legend>
+        {{ form(form, {'attr': {'novalidate': 'novalidate'}}) }}
+    </fieldset>
+
+{% endblock %}

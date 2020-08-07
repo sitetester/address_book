@@ -1,0 +1,24 @@
+table {
+    margin-top: 10px;
+    border-collapse: collapse;
+    width: 50%;
+    border: 1px solid black;
+    text-align: left;
+}
+
+td {
+    border: 1px solid black;
+}
+
+.addNew {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+fieldset {
+    margin-top: 20px;
+}
+
+input {
+    width: 50%;
+}

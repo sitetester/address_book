@@ -1,28 +1,39 @@
-<a href="{{ path('contacts_add') }}">Add New Contact</a>
+{% extends "base.html.twig" %}
 
-<table border="1" width="100%">
-    <tr>
-        <th>Full Name</th>
-        <th>Address</th>
-        <th>Contacts</th>
-        <th>Birthday</th>
-        <th>Photo</th>
-    </tr>
-    {% for contact in contacts %}
+{% block body %}
+
+    <a href="{{ path('contacts_add') }}" class="addNew">Add New Contact</a>
+
+    <table style="width: 100%">
         <tr>
-            <td>
-                <a href="{{ path('contacts_edit', {id: contact.id}) }}">{{ contact.firstname }} {{ contact.lastname }} </a>
-            </td>
-            <td> {{ contact.streetAndNumber }}, {{ contact.zip }} , {{ contact.city }}, {{ contact.country }}</td>
-            <td> {{ contact.phoneNumber }}, {{ contact.email }}</td>
-            <td> {{ contact.birthday|date("Y-m-d") }}</td>
-            <td>
-                {% if contact.picture %}
-                    <a href="{{ asset('uploads/' ~ contact.picture) }}" target="_blank"
-                       title="Click to open in new tab"><img
-                                src="{{ asset('uploads/' ~ contact.picture) }}" width="100" height="100"></a>
-                {% endif %}
-            </td>
+            <th>Full Name</th>
+            <th>Address</th>
+            <th>Contacts</th>
+            <th>Birthday</th>
+            <th>Photo</th>
+            <th>Actions</th>
         </tr>
-    {% endfor %}
-</table>
+        {% for contact in contacts %}
+            <tr>
+                <td>
+                    <a href="{{ path('contacts_edit', {id: contact.id}) }}">{{ contact.firstname }} {{ contact.lastname }} </a>
+                </td>
+                <td> {{ contact.streetAndNumber }}, {{ contact.zip }} , {{ contact.city }}, {{ contact.country }}</td>
+                <td> {{ contact.phoneNumber }} <br> {{ contact.email }}</td>
+                <td> {{ contact.birthday|date("Y-m-d") }}</td>
+                <td>
+                    {% if contact.picture %}
+                        <a href="{{ asset('uploads/' ~ contact.picture) }}" target="_blank"
+                           title="Click to open in new tab"><img
+                                    src="{{ asset('uploads/' ~ contact.picture) }}" width="100" height="100"></a>
+                    {% endif %}
+                </td>
+                <td>
+                    <a href="{{ path('contacts_edit', {id: contact.id}) }}">Edit </a> <br><br>
+                    <a href="{{ path('contacts_delete', {id: contact.id}) }}" onclick="confirm('Conform delete ?');">Delete</a>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}

@@ -11,6 +11,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
 /**
@@ -115,5 +116,26 @@ class ContactsController extends AbstractController
                 'form' => $form->createView(),
             ]
         );
+    }
+
+    /**
+     * @Route("/delete/{id}", name="contacts_delete")
+     */
+    public function delete(int $id): Response
+    {
+        $contact = $this->contactRepository->find($id);
+        if (!$contact) {
+            throw $this->createNotFoundException(sprintf('Not not found for given ID: %d', $id));
+        }
+
+        if ($contact->getPicture() && file_exists($this->uploadPath . $contact->getPicture())) {
+            unlink($this->uploadPath . $contact->getPicture());
+        }
+
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($contact);
+        $manager->flush();
+
+        return $this->redirect($this->generateUrl('contacts_index'));
     }
 }
