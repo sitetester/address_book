@@ -5,11 +5,13 @@ namespace App\Entity;
 
 use App\Repository\ContactRepository;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=ContactRepository::class)
  * @ORM\Table(name="contacts")
+ * @UniqueEntity("email")
  */
 class Contact
 {
@@ -93,7 +95,7 @@ class Contact
         return $this->firstname;
     }
 
-    public function setFirstname(string $firstname): self
+    public function setFirstname(?string $firstname): self
     {
         $this->firstname = $firstname;
 
@@ -105,7 +107,7 @@ class Contact
         return $this->lastname;
     }
 
-    public function setLastname(string $lastname): self
+    public function setLastname(?string $lastname): self
     {
         $this->lastname = $lastname;
 
@@ -117,7 +119,7 @@ class Contact
         return $this->streetAndNumber;
     }
 
-    public function setStreetAndNumber(string $streetAndNumber): self
+    public function setStreetAndNumber(?string $streetAndNumber): self
     {
         $this->streetAndNumber = $streetAndNumber;
 
@@ -129,7 +131,7 @@ class Contact
         return $this->zip;
     }
 
-    public function setZip(string $zip): self
+    public function setZip(?string $zip): self
     {
         $this->zip = $zip;
 
@@ -141,7 +143,7 @@ class Contact
         return $this->city;
     }
 
-    public function setCity(string $city): self
+    public function setCity(?string $city): self
     {
         $this->city = $city;
 
@@ -153,7 +155,7 @@ class Contact
         return $this->country;
     }
 
-    public function setCountry(string $country): self
+    public function setCountry(?string $country): self
     {
         $this->country = $country;
 
@@ -165,7 +167,7 @@ class Contact
         return $this->phoneNumber;
     }
 
-    public function setPhoneNumber(string $phoneNumber): self
+    public function setPhoneNumber(?string $phoneNumber): self
     {
         $this->phoneNumber = $phoneNumber;
 
@@ -177,7 +179,7 @@ class Contact
         return $this->birthday;
     }
 
-    public function setBirthday(\DateTimeInterface $birthday): self
+    public function setBirthday(?\DateTimeInterface $birthday): self
     {
         $this->birthday = $birthday;
 
@@ -189,7 +191,7 @@ class Contact
         return $this->email;
     }
 
-    public function setEmail(string $email): self
+    public function setEmail(?string $email): self
     {
         $this->email = $email;
 
