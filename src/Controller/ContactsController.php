@@ -78,6 +78,7 @@ class ContactsController extends AbstractController
         $form = $this->createForm(ContactType::class, $contact);
 
         $form->handleRequest($request);
+
         if ($form->isSubmitted() && $form->isValid()) {
             $this->persistContact($form, $contact, $fileUploader);
 
