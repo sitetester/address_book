@@ -35,6 +35,7 @@ class ContactsController extends AbstractController
     {
         return $this->render(
             'contacts/index.html.twig', [
+                // TODO: Change this according to requirements
                 'contacts' => $this->contactRepository->findAll(),
             ]
         );
