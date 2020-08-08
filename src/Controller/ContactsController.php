@@ -50,7 +50,7 @@ class ContactsController extends AbstractController
         /** @var UploadedFile $pictureFile */
         $pictureFile = $form->get('picture')->getData();
 
-        // this condition is needed because the 'brochure' field is not required
+        // this condition is needed because the 'picture' field is not required
         // so the picture file must be processed only when a file is uploaded
         if ($pictureFile) {
             // delete existing picture
