@@ -54,8 +54,9 @@ class ContactsController extends AbstractController
         // so the picture file must be processed only when a file is uploaded
         if ($pictureFile) {
             // delete existing picture
-            if ($existingPicture && file_exists($this->uploadPath . $existingPicture)) {
-                unlink($this->uploadPath . $existingPicture);
+            $fullPath = $this->uploadPath . $existingPicture;
+            if ($existingPicture && file_exists($fullPath)) {
+                unlink($fullPath);
             }
 
             $fileUploader->upload($contact, $pictureFile);
