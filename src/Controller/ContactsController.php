@@ -100,7 +100,7 @@ class ContactsController extends AbstractController
     {
         $contact = $this->contactRepository->find($id);
         if (!$contact) {
-            throw $this->createNotFoundException(sprintf('Not not found for given ID: %d', $id));
+            throw $this->createNotFoundException(sprintf('Contact not found for given ID: %d', $id));
         }
 
         $existingPicture = $contact->getPicture();
@@ -129,7 +129,7 @@ class ContactsController extends AbstractController
     {
         $contact = $this->contactRepository->find($id);
         if (!$contact) {
-            throw $this->createNotFoundException(sprintf('Not not found for given ID: %d', $id));
+            throw $this->createNotFoundException(sprintf('Contact not found for given ID: %d', $id));
         }
 
         if ($contact->getPicture() && file_exists($this->uploadPath . $contact->getPicture())) {
