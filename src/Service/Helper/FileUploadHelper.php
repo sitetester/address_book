@@ -23,10 +23,22 @@ class FileUploadHelper
     {
         $originalFilename = pathinfo($pictureFile->getClientOriginalName(), PATHINFO_FILENAME);
 
-        // this is needed to safely include the file name as part of the URL
-        $newFilename = $originalFilename . '_' . date('Y_m_d_H_i_s') . '.' . $pictureFile->guessExtension();
+        if (\extension_loaded('intl')) {
+            // https://symfony.com/doc/3.4/controller/upload_file.html
+            // this is needed to safely include the file name as part of the URL
+            $safeFilename = transliterator_transliterate(
+                'Any-Latin; Latin-ASCII; [^A-Za-z0-9_] remove; Lower()',
+                $originalFilename
+            );
 
-        // Move the file to the directory where brochures are stored
+            $newFilename = $safeFilename . '-' . uniqid('', true) . '.' . $pictureFile->guessExtension();
+        } else {
+            // https://symfony.com/doc/3.3/controller/upload_file.html
+            $newFilename = md5(uniqid('', true)) . '.' . $pictureFile->guessExtension();
+        }
+
+
+        // move the file to the directory where brochures are stored
         try {
             $pictureFile->move(
                 $this->uploadPath,
