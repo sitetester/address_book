@@ -81,7 +81,7 @@ class Contact
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
-     * @Assert\File(mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
+     * @Assert\File(maxSize = "2M", mimeTypes={ "image/jpg", "image/jpeg", "image/png" })
      */
     private $picture;
 
